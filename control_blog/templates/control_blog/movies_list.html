@@ -5,18 +5,15 @@
 {% endblock titulo %}
 
 {% block contenido %}
-    <h1>
-        Películas
-    </h1>
-
+    <h1>Películas</h1>
+    
     <h3>Lista de películas</h3>
 
-    <ul>
     {% for movie in movies %}
+  <li>
+    {{ movie.title }}
+  </li>
+{% endfor %}
+</ul>
 
-        <li>
-            {{movie.title}}
-        </li>
-    {% endfor %}
-    </ul>
 {% endblock contenido %}

@@ -9,3 +9,9 @@ def list_movies(request):
         context=contexto
     )
     return http_response
+
+def add_movie(request):
+    http_response = render(
+        request=request,
+        template_name='control_blog/new_movie.html'
+    )
