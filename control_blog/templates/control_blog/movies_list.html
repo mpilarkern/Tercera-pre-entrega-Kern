@@ -11,7 +11,9 @@
 
     {% for movie in movies %}
   <li>
-    {{ movie.title }}
+    {{ movie.title }} - {{movie.release_year}}<br>
+    Duración: {{movie.length}}<br>
+    Argumento: {{movie.plot}}
   </li>
 {% endfor %}
 </ul>

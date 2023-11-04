@@ -9,7 +9,7 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=256)
-    length = models.DurationField(null=True)
+    length = models.DurationField(blank=True, null=True)
     release_year = models.IntegerField()
     plot = models.TextField(blank=True, null=True)
 
