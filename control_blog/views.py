@@ -15,3 +15,4 @@ def add_movie(request):
         request=request,
         template_name='control_blog/new_movie.html'
     )
+    return http_response

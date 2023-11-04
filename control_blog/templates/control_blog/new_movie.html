@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<form method='post'>
+    {% csrf_token %}
+    <p>Título de la película</p>
+    <input type='text' name='título'>
+    <p>Año de estreno</p>
+    <input type='number' name='año' step='1'>
+    <input type='submit' name='enviar'>
+</form>
+{% endblock contenido%}
