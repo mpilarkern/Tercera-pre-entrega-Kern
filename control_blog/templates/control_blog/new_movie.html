@@ -1,12 +1,15 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block titulo %}
+Add movie
+{% endblock titulo %}
 
 {% block contenido %}
-<form method='post'>
-    {% csrf_token %}
-    <p>Título de la película</p>
-    <input type='text' name='título'>
-    <p>Año de estreno</p>
-    <input type='number' name='año' step='1'>
-    <input type='submit' name='enviar'>
+<form method="post">
+  {% csrf_token %}
+  {{ formulario.as_p }}
+  <input class="btn btn-success" type="submit" value="Submit movie" />
 </form>
-{% endblock contenido%}
+<br>
+<a href="{% url 'movies_list' %}">Volver a la lista</a>
+{% endblock contenido %}
