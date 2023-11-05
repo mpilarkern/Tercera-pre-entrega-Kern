@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
-from control_blog.models import Genre, Movie
-from control_blog.forms import MovieForm, GenreForm
+from control_blog.models import Genre, Movie, Serie
+from control_blog.forms import MovieForm, GenreForm, SerieForm
 # Create your views here.
 def list_genres(request):
     contexto = {'genres': Genre.objects.all()}
@@ -107,6 +107,61 @@ def search_movies(request):
         http_response = render(
             request=request,
             template_name='control_blog/movies_list.html',
+            context=contexto,
+        )
+        return http_response
+    
+def list_series(request):
+    contexto = {'series': Serie.objects.all()}
+    http_response = render(
+        request=request,
+        template_name='control_blog/series_list.html',
+        context=contexto
+    )
+    return http_response
+
+def add_serie(request):
+    if request.method == "POST":
+ 
+        formulario = SerieForm(request.POST) 
+ 
+        if formulario.is_valid():
+                  data = formulario.cleaned_data
+                  title = data["title"]
+                  seasons = data["seasons"]
+                  release_year = data["release_year"]
+                  plot = data['plot']
+                  serie = Serie(title=title, seasons=seasons, release_year=release_year, plot=plot)
+                  serie.save()
+                  url_exitosa = reverse('series_list')  
+                  return redirect(url_exitosa)
+    
+    else:
+            formulario = SerieForm()
+            
+    
+    http_response = render(
+        request=request,
+        template_name='control_blog/new_serie.html',
+        context={'formulario': formulario}
+    )
+    return http_response
+
+def search_series(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        
+        series = Serie.objects.filter(
+            Q(title__icontains=busqueda) | Q(release_year__contains=busqueda)
+        )
+
+        contexto = {
+            "series": series,
+        }
+        http_response = render(
+            request=request,
+            template_name='control_blog/series_list.html',
             context=contexto,
         )
         return http_response
