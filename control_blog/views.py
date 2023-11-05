@@ -1,9 +1,61 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
-from control_blog.models import Movie
-from control_blog.forms import MovieForm
+from control_blog.models import Genre, Movie
+from control_blog.forms import MovieForm, GenreForm
 # Create your views here.
+def list_genres(request):
+    contexto = {'genres': Genre.objects.all()}
+    http_response = render(
+        request=request,
+        template_name='control_blog/genres_list.html',
+        context=contexto
+    )
+    return http_response
+
+def add_genre(request):
+    if request.method == "POST":
+ 
+        formulario = GenreForm(request.POST) 
+ 
+        if formulario.is_valid():
+                  data = formulario.cleaned_data
+                  name = data["name"]
+                  genre = Genre(name=name)
+                  genre.save()
+                  url_exitosa = reverse('genres_list')  
+                  return redirect(url_exitosa)
+    
+    else:
+            formulario = GenreForm()
+            
+    
+    http_response = render(
+        request=request,
+        template_name='control_blog/new_genre.html',
+        context={'formulario': formulario}
+    )
+    return http_response
+
+def search_genres(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        
+        genres = Genre.objects.filter(
+            Q(name__icontains=busqueda)
+        )
+
+        contexto = {
+            "genres": genres,
+        }
+        http_response = render(
+            request=request,
+            template_name='control_blog/genres_list.html',
+            context=contexto,
+        )
+        return http_response
+
 def list_movies(request):
     contexto = {'movies': Movie.objects.all()}
     http_response = render(

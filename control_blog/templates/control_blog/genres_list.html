@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+<title>Genres</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Géneros</h1>
+    
+    <a href="{% url 'genres_list' %}">Ver todos</a>
+    <a href="{% url 'new_genre' %}">Añadir género</a>
+    <br><br>
+    <form action="{% url 'search_genres' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="busqueda">
+        <input type="submit" value="Buscar género">
+      </form>
+      <br>
+    {% for genre in genres %}
+  <li>
+    {{ genre.name }} 
+  </li>
+{% endfor %}
+</ul>
+{% endblock contenido %}
