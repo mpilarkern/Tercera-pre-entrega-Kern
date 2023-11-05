@@ -19,8 +19,17 @@
     {% for movie in movies %}
   <li>
     {{ movie.title }} - {{movie.release_year}}<br>
-    Duración: {{movie.length}}<br>
+    {% if movie.length == none %}
+    Duración: añadir duración
+    {% else %}
+    Duración: {{movie.length}}
+    {% endif %}
+    <br>
+    {% if movie.plot == '' %}
+    Argumento: añadir Argumento
+    {% else %}
     Argumento: {{movie.plot}}
+    {% endif %}
   </li>
 {% endfor %}
 </ul>
