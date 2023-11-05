@@ -39,3 +39,22 @@ def add_movie(request):
         context={'formulario': formulario}
     )
     return http_response
+
+def search_movies(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        
+        movies = Movie.objects.filter(
+            Q(title__icontains=busqueda) | Q(release_year__contains=busqueda)
+        )
+
+        contexto = {
+            "movies": movies,
+        }
+        http_response = render(
+            request=request,
+            template_name='control_blog/movies_list.html',
+            context=contexto,
+        )
+        return http_response
