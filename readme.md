@@ -27,3 +27,20 @@ contraseña:password
 
 # Usuarios normales
 ??
+
+# Instrucciones para probar el funcionamiento
++ Abrir la consola y correr el comando
+```
+python manage.py runserver
+```
++ Abrir enlace generado
+```
+http://127.0.0.1:8000/
+```
++ Tocar 'Genre', 'Movies' o 'Series'. Dentro de cada apartado, se encontrarán un formulario de busqueda y dos botones con distintos accesos.
++ Pulsar sobre 'Añadir género', 'Añadir película' o 'Añadir serie' según corresponda.
++ Completar la información solicitada por el formulario y enviar. Repetir este paso cuantas veces se desee.
++ Buscar un género, serie o película.
++ Pulsar 'Ver todos'.
++ Repetir el procedimiento con los models restantes
+

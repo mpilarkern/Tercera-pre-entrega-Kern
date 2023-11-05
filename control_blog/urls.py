@@ -10,5 +10,5 @@ urlpatterns = [
     path('search-movies', search_movies, name='search_movies'),
     path('series/', list_series, name='series_list'),
     path('new-serie/', add_serie, name='new_serie'),
-    path('search-movies', search_movies, name='search_series'),
+    path('search-series', search_series, name='search_series'),
 ]
