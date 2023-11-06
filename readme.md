@@ -29,7 +29,7 @@ contraseña:password
 ??
 
 # Instrucciones para probar el funcionamiento
-+ Abrir la consola y correr el comando
++ Abrir la consola y ubicarse en la carpeta ¨tercera_entrega¨. Luego, correr el comando
 ```
 python manage.py runserver
 ```
